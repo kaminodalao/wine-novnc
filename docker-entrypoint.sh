@@ -1,0 +1,1 @@
+/opt/noVNC-1.3.0/utils/novnc_proxy --listen 6080 --vnc 127.0.0.1:5901
