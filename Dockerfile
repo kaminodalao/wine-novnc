@@ -2,11 +2,17 @@ FROM debian:11
 
 ENV HOME /root
 ENV USER root
-WORKDIR /root/build
+ENV DEBIAN_FRONTEND noninteractive
+ENV LC_ALL C.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US.UTF-8
+
+WORKDIR /root
 
 EXPOSE 6080
 
-RUN cd /root/build &&\
+RUN mkdir /root/build &&\
+    cd /root/build &&\
     sed -i 's/deb.debian.org/mirrors.tencent.com/g' /etc/apt/sources.list &&\
     sed -i 's/security.debian.org/mirrors.tencent.com/g' /etc/apt/sources.list &&\
     apt update &&\
