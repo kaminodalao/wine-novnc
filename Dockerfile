@@ -32,4 +32,4 @@ RUN mkdir /root/build &&\
 ADD docker-entrypoint.sh /usr/bin/
 ADD xstartup /root/.vnc/
 
-ENTRYPOINT ["docker-entrypoint.sh"]
+ENTRYPOINT ["/usr/bin/docker-entrypoint.sh"]
