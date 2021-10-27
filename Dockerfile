@@ -11,6 +11,9 @@ WORKDIR /root
 
 EXPOSE 6080
 
+ADD docker-entrypoint.sh /usr/bin/
+ADD xstartup /root/.vnc/
+
 RUN mkdir /root/build &&\
     cd /root/build &&\
     sed -i 's/deb.debian.org/mirrors.tencent.com/g' /etc/apt/sources.list &&\
@@ -27,9 +30,7 @@ RUN mkdir /root/build &&\
     wget https://mirrors.imea.me/dl.winehq.org/wine/wine-mono/6.4.0/wine-mono-6.4.0-x86.msi &&\
     wine msiexec /i wine-mono-6.4.0-x86.msi &&\
     wget https://mirrors.imea.me/dl.winehq.org/wine/wine-gecko/2.47.2/wine-gecko-2.47.2-x86_64.msi &&\
-    wine msiexec /i wine-gecko-2.47.2-x86_64.msi
-
-ADD docker-entrypoint.sh /usr/bin/
-ADD xstartup /root/.vnc/
+    wine msiexec /i wine-gecko-2.47.2-x86_64.msi &&\
+    chmod +x /usr/bin/docker-entrypoint.sh
 
 ENTRYPOINT ["/usr/bin/docker-entrypoint.sh"]
